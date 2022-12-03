@@ -16,7 +16,8 @@ public class ScannerDemo {
 		while (!ts.isEndofFile()) {
 			// TODO TO BE COMPLETED
 			// tk is not defined on the line below
-			// System.out.println("Token " + counter++ + " - Type: " + tk.getType() + " - Value: " + tk.getValue());
+			tk=ts.nextToken();
+			 System.out.println("Token " + counter++ + " - Type: " + tk.getType() + " - Value: " + tk.getValue());
 		}
 	}
 }
