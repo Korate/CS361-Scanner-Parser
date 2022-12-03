@@ -6,7 +6,7 @@
 public class ScannerDemo {
 
 	// Oh! This needs to be changed !
-	private static String file1 = "C:\\Users\\13447\\Downloads\\AutumnClass\\±‡≥Ã”Ô—‘\\hw4\\prog1.kay";
+	private static String file1 = "C:\\Users\\13447\\Downloads\\AutumnClass\\CS361\\hw4\\CS361-Scanner-Parser\\prog1.kay";
 	private static int counter = 1;
 
 	public static void main(String args[]) {
@@ -16,7 +16,8 @@ public class ScannerDemo {
 		while (!ts.isEndofFile()) {
 			// TODO TO BE COMPLETED
 			// tk is not defined on the line below
-			// System.out.println("Token " + counter++ + " - Type: " + tk.getType() + " - Value: " + tk.getValue());
+			tk=ts.nextToken();
+			 System.out.println("Token " + counter++ + " - Type: " + tk.getType() + " - Value: " + tk.getValue());
 		}
 	}
 }

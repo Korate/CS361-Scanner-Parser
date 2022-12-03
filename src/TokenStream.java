@@ -44,10 +44,9 @@ public class TokenStream {
 		Token t = new Token();
 		t.setType("Other"); // For now it is Other. You will update it in the code
 		t.setValue("");
-
+		
 		// First check for whitespaces and bypass them
 		skipWhiteSpace();
-
 		// Then check for a comment, and bypass it
 		// but remember that / may also be a division operator.
 		while (nextChar == '/') {
@@ -57,6 +56,15 @@ public class TokenStream {
 			if (nextChar == '/') { // If / is followed by another /
 				// skip rest of line - it's a comment.
 				// TODO TO BE COMPLETED
+				nextChar = readChar();
+				//System.out.print("Start Commit here！");
+				while((nextChar!='\r'&&nextChar!='\n')&&!isEoFile()){
+					//System.out.print(nextChar);
+					nextChar = readChar();
+				}
+				//System.out.println("End Commit！");
+				skipWhiteSpace();
+				continue;
 			} else {
 				// A slash followed by anything else must be an operator.
 				t.setValue("/");
@@ -74,13 +82,39 @@ public class TokenStream {
 			// TODO TO BE COMPLETED OR CHANGED WHERE NEEDED TO IMPLEMENT KAY
 			case '<':
 				// <=
+				nextChar = readChar();
+				if (nextChar == '=') {
+					t.setValue(t.getValue() + nextChar);
+					nextChar = readChar();
+				}
+				return t;
 			case '>':
 				// >=
+				nextChar = readChar();
+				if (nextChar == '=') {
+					t.setValue(t.getValue() + nextChar);
+					nextChar = readChar();
+				}
+				return t;
 			case '=':
 				// ==
+				nextChar = readChar();
+				if (nextChar == '=') {
+					t.setValue(t.getValue() + nextChar);
+					nextChar = readChar();
+					return t;
+				}
+				else{
+					t.setType("Other");
+				}
+				
 			case '!':
 				// !=
 				nextChar = readChar();
+				if (nextChar == '=') {
+					t.setValue(t.getValue() + nextChar);
+					nextChar = readChar();
+				}
 				return t;
 			case '|':
 				// Look for ||
@@ -104,6 +138,16 @@ public class TokenStream {
 					t.setType("Other");
 				}
 
+				return t;
+				case ':':
+				nextChar = readChar();
+				if (nextChar == '=') {
+					t.setValue(t.getValue() + nextChar);
+					nextChar = readChar();
+					return t;
+				} else {
+					t.setType("Other");
+				}
 				return t;
 			default: // all other operators
 				nextChar = readChar();
@@ -198,7 +242,7 @@ public class TokenStream {
 	private boolean isOperator(char c) {
 		// Checks for characters that start operators
 		// TODO TO BE COMPLETED
-		return false;
+		return (c=='+'|c=='-'|c=='*'|c=='/'|c=='<'|c=='>'|c=='='|c=='!'|c=='&'|c=='|'|c==':');
 	}
 
 	private boolean isLetter(char c) {
