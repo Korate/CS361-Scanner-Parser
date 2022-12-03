@@ -159,6 +159,8 @@ public class TokenStream {
 		if (isSeparator(nextChar)) {
 			t.setType("Separator");
 			// TODO TO BE COMPLETED
+			t.setValue(t.getValue() + nextChar);
+			nextChar = readChar();
 			return t;
 		}
 
@@ -236,7 +238,7 @@ public class TokenStream {
 
 	private boolean isSeparator(char c) {
 		// TODO TO BE COMPLETED
-		return false;
+		return(c=='('|c==')'|c=='{'|c=='}'|c==';'|c==',');
 	}
 
 	private boolean isOperator(char c) {
