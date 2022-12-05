@@ -57,12 +57,9 @@ public class TokenStream {
 				// skip rest of line - it's a comment.
 				// TODO TO BE COMPLETED
 				nextChar = readChar();
-				//System.out.print("Start Commit here！");
-				while((nextChar!='\r'&&nextChar!='\n')&&!isEoFile()){
-					//System.out.print(nextChar);
+				while(!isEndOfLine(nextChar)&&!isEoFile()){
 					nextChar = readChar();
 				}
-				//System.out.println("End Commit！");
 				skipWhiteSpace();
 				continue;
 			} else {
@@ -106,6 +103,7 @@ public class TokenStream {
 				}
 				else{
 					t.setType("Other");
+					return t;
 				}
 				
 			case '!':
@@ -137,7 +135,6 @@ public class TokenStream {
 				} else {
 					t.setType("Other");
 				}
-
 				return t;
 				case ':':
 				nextChar = readChar();
@@ -233,7 +230,7 @@ public class TokenStream {
 
 	private boolean isKeyword(String s) {
 		// TODO TO BE COMPLETED 
-		return false;
+		return(s.equals("bool")|s.equals("else")|s.equals("if")|s.equals("integer")|s.equals("main")|s.equals("while"));
 	}
 
 	private boolean isSeparator(char c) {
@@ -253,7 +250,7 @@ public class TokenStream {
 
 	private boolean isDigit(char c) {
 		// TODO TO BE COMPLETED
-		return false;
+		return(c>='0'&&c<='9');
 	}
 	
 	private boolean isWhiteSpace(char c) {
