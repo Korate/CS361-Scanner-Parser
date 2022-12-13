@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch ParserDemo",
+            "request": "launch",
+            "mainClass": "ParserDemo",
+            "projectName": "CS361-Scanner-Parser_6fef3c42"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
