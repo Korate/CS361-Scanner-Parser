@@ -1,4 +1,5 @@
 main{
+// For the KAY program:
 int i;
 i := 7;
 }
