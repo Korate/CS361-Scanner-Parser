@@ -52,8 +52,8 @@ public class ConcreteSyntax {
 			// bypass " main { "
 			match(header[i]);
 			// add the required code
-		p.decpart = declarations();
-		p.body=statements();
+		p.decpart=declarations();
+		p.body = statements();
 		return p;
 	}
 
@@ -128,7 +128,7 @@ public class ConcreteSyntax {
 			s = ifStatement();
 		else if (token.getValue().equals("while")) { // WhileStatement
 			// TODO TO BE COMPLETED
-			token = input.nextToken();
+			token=input.nextToken();
 			s = whileStatement();
 		} else if (token.getType().equals("Identifier")) { // Assignment
 			// TODO TO BE COMPLETED
@@ -235,11 +235,11 @@ public class ConcreteSyntax {
 				|| token.getValue().equals("!=")) {
 			b = new Binary();
 			// TODO TO BE COMPLETED
-			b.op = new Operator(token.getValue());
-			b.term1=e;
-			token = input.nextToken();
-			b.term2=addition();
-			e = b;
+			b.op=new Operator(token.getValue());
+			b.term1 = e;
+			token=input.nextToken();
+			b.term2 = addition();
+			e=b;
 		}
 		return e;
 	}
@@ -326,12 +326,12 @@ public class ConcreteSyntax {
 		// IfStatement --> if ( Expression ) Statement { else Statement }opt
 		Conditional c = new Conditional();
 		// TODO TO BE COMPLETED
-		token = input.nextToken();
-		c.test=conjunctions();
-		c.thenbranch=statement();
+		token=input.nextToken();
+		c.test = conjunctions();
+		c.thenbranch = statement();
 		if(token.getValue().equals("else")){
-			token = input.nextToken();
-			c.elsebranch=statement();
+			token=input.nextToken();
+			c.elsebranch = statement();
 		}
 		return c;
 	}
@@ -340,8 +340,8 @@ public class ConcreteSyntax {
 		// WhileStatement --> while ( Expression ) Statement
 		Loop l = new Loop();
 		// TODO TO BE COMPLETED
-		l.test=conjunctions();
-		l.body=statement();
+		l.test  =conjunctions();
+		l.body = statement();
 		return l;
 	}
 
